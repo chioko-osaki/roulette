@@ -45,7 +45,7 @@
 
 .wheel-label {
   font-family: var(--font-base);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   fill: #FFFFFF;
   paint-order: stroke;
