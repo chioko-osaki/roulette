@@ -12,9 +12,12 @@
    ========================================================= */
 
 const PRIZE_CONFIG = [
-  { id: 'A', name: 'A賞', image: 'images/prize-a.png', initialStock: 5 },
-  { id: 'B', name: 'B賞', image: 'images/prize-b.png', initialStock: 10 },
-  { id: 'C', name: 'C賞', image: 'images/prize-c.png', initialStock: 20 },
+  { id: 'A', name: '橋元隊員賞', image: 'images/prize-a.png', initialStock: 5 },
+  { id: 'B', name: '秋山隊員賞', image: 'images/prize-b.png', initialStock: 10 },
+  { id: 'C', name: '氏家隊員賞', image: 'images/prize-c.png', initialStock: 20 },
+  { id: 'D', name: '外崎隊員賞', image: 'images/prize-b.png', initialStock: 10 },
+  { id: 'E', name: '粕谷隊員賞', image: 'images/prize-b.png', initialStock: 10 },
+  { id: 'F', name: '今野隊員賞', image: 'images/prize-b.png', initialStock: 10 },
 ];
 
 const Inventory = (function () {
