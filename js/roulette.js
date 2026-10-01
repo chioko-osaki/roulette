@@ -19,6 +19,13 @@ const Roulette = (function () {
   // ここを変えると「何周してから止まるか」を調整できます（多いほど盛り上がるが長くなる）
   const EXTRA_SPINS = 5;
 
+  // ルーレットが止まってから、結果画面を表示するまでの待ち時間（ミリ秒）。
+  // 「止まった音(roulette-stop.mp3)」と「結果画面の音(result-show.mp3)」が
+  // 同時に鳴って聞き取りづらくならないよう、間を空けるために使っています。
+  // roulette-stop.mp3 の長さに合わせて、この数値を調整してください
+  // （音が短ければ数値を小さく、長ければ大きくするとちょうど良くなります）。
+  const RESULT_DELAY_MS = 1000;
+
   let currentAngle = 0;       // ホイールの現在の累積回転角度
   let currentCandidates = []; // 直近に描画した「抽選対象の景品」の並び順（表示用）
 
@@ -111,7 +118,9 @@ const Roulette = (function () {
       rotorEl.removeEventListener('transitionend', handleTransitionEnd);
       stopSound('roulette');
       playSound('roulette-stop');
-      onFinish();
+      // stopSound/roulette-stopの音が鳴り終わる前に結果画面の音が重ならないよう、
+      // 少し待ってから結果画面の表示(onFinish)を呼び出す
+      setTimeout(onFinish, RESULT_DELAY_MS);
     };
     rotorEl.addEventListener('transitionend', handleTransitionEnd);
   }
