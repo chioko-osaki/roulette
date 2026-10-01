@@ -16,6 +16,14 @@
    エラーにならず、何も起きないだけです。抽選処理には一切影響しません。
    後からファイルを追加・差し替えたいときは、同じファイル名で
    audio フォルダの中身を入れ替えるだけでOKです。
+
+   ★再生の遅延について★
+   ページを開いた時点で、下の audioElements があらかじめ各音声ファイルの
+   読み込みを開始しておきます（プリロード）。これにより、ボタンを押した
+   瞬間に初めてファイルを読みに行くことがなくなり、再生の遅延が
+   目立ちにくくなります。
+   それでも遅れが気になる場合は、音声ファイル自体の先頭に無音部分が
+   入っていないか確認し、入っていれば編集ソフトでカットしてみてください。
    ========================================================= */
 
 const SOUND_FILES = {
@@ -25,24 +33,27 @@ const SOUND_FILES = {
   'result-show': 'audio/result-show.mp3',
 };
 
-// ループ再生中の音を覚えておくための入れ物（ルーレット回転音の停止に使用）
-const activeLoopingAudio = {};
+// 各SEを1つずつ事前に作成し、読み込みを開始しておく（使い回すことで遅延を防ぐ）
+const audioElements = {};
+Object.keys(SOUND_FILES).forEach((key) => {
+  const audio = new Audio(SOUND_FILES[key]);
+  audio.preload = 'auto';
+  audio.load();
+  audioElements[key] = audio;
+});
 
 // key: SOUND_FILESのいずれか
 // loop: trueにすると、stopSound(key)を呼ぶまでループ再生し続ける
 //       （「ルーレットが回っている間」ずっと鳴らしたい場合に使う）
 function playSound(key, options) {
-  const src = SOUND_FILES[key];
-  if (!src) return;
+  const audio = audioElements[key];
+  if (!audio) return;
 
   const loop = !!(options && options.loop);
+  audio.loop = loop;
 
   try {
-    const audio = new Audio(src);
-    audio.loop = loop;
-    if (loop) {
-      activeLoopingAudio[key] = audio;
-    }
+    audio.currentTime = 0; // 前回の再生位置が残らないよう、必ず先頭から鳴らす
     // 音声ファイルが存在しない/再生できない場合もエラーにせず、静かに無視する
     audio.play().catch(() => {});
   } catch (error) {
@@ -52,9 +63,8 @@ function playSound(key, options) {
 
 // loop: trueで再生した音を止めたいときに呼ぶ（例：ルーレットが止まったタイミング）
 function stopSound(key) {
-  const audio = activeLoopingAudio[key];
+  const audio = audioElements[key];
   if (!audio) return;
   audio.pause();
   audio.currentTime = 0;
-  delete activeLoopingAudio[key];
 }
