@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>管理画面 - 景品抽選ルーレット</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body id="admin-body">
+
+  <div id="admin-page">
+    <div id="admin-header">
+      <h1>管理画面</h1>
+      <a id="admin-back-btn" href="index.html">抽選画面に戻る</a>
+    </div>
+
+    <div id="admin-status">
+      <p>現在のモード：<strong id="admin-mode-label">-</strong></p>
+      <p>総抽選回数（本番）：<strong id="admin-draw-count">0</strong> 回</p>
+    </div>
+
+    <div id="admin-section-prizes">
+      <h2>景品と在庫</h2>
+      <div id="admin-prize-list"></div>
+    </div>
+
+    <div id="admin-section-production">
+      <button id="admin-start-production-btn" type="button">本番用にリセット</button>
+      <p class="admin-hint">在庫を初期数に戻し、履歴と抽選回数をクリアして本番モードに切り替えます。</p>
+    </div>
+
+    <div id="admin-section-history">
+      <h2>抽選履歴</h2>
+      <div id="admin-history-list"></div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/inventory.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
