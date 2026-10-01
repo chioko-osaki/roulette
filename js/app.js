@@ -95,8 +95,6 @@ const App = (function () {
     }
     // テストモードの場合は②③を行わないため、在庫も履歴も変化しない
 
-    playSound('draw-start');
-
     // ④ ルーレット演出を開始 → ⑤ 終了後に結果画面を表示
     Roulette.spinTo(winner.id, () => {
       showResultScreen(winner);
