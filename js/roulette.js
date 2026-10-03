@@ -24,7 +24,7 @@ const Roulette = (function () {
   // 同時に鳴って聞き取りづらくならないよう、間を空けるために使っています。
   // roulette-stop.mp3 の長さに合わせて、この数値を調整してください
   // （音が短ければ数値を小さく、長ければ大きくするとちょうど良くなります）。
-  const RESULT_DELAY_MS = 2000;
+  const RESULT_DELAY_MS = 1500;
 
   let currentAngle = 0;       // ホイールの現在の累積回転角度
   let currentCandidates = []; // 直近に描画した「抽選対象の景品」の並び順（表示用）
