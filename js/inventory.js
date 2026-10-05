@@ -19,9 +19,9 @@
 const PRIZE_CONFIG = [
   { id: 'A', rankName: '橋元隊員賞', itemName: '特製スマホクリーナー', image: 'images/IMG_prize01.png', initialStock: 20 },
   { id: 'B', rankName: '秋山隊員賞', itemName: 'ミニコースター', image: 'images/IMG_prize02.png', initialStock: 18 },
-  { id: 'C', rankName: '氏家隊員賞', itemName: '〓〓〓〓〓', image: 'images/prize-c.png', initialStock: 20 },
+  { id: 'C', rankName: '氏家隊員賞', itemName: '鳴子温泉駅開業110周年記念ポストカード', image: 'images/IMG_prize03.png', initialStock: 20 },
   { id: 'D', rankName: '外崎隊員賞', itemName: '大崎市クリアファイル', image: 'images/IMG_prize04.png', initialStock: 20 },
-  { id: 'E', rankName: '粕谷隊員賞', itemName: '〓〓〓〓〓', image: 'images/prize-c.png', initialStock: 20 },
+  { id: 'E', rankName: '粕谷隊員賞', itemName: 'ジビエの郷おおさき 割引クーポン券', image: 'images/IMG_prize05.png', initialStock: 20 },
   { id: 'F', rankName: '今野隊員賞', itemName: '竹編みリング', image: 'images/IMG_prize06.png', initialStock: 20 },
 ];
 
